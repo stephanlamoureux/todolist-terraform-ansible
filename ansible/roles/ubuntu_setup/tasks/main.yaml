@@ -1,0 +1,12 @@
+- name: Update apt repositories
+  apt:
+    update_cache: yes
+
+- name: Upgrade all packages
+  apt:
+    upgrade: 'dist'
+
+- name: Install Ubuntu packages
+  apt:
+    name: "{{ ubuntu_packages }}"
+    state: latest
