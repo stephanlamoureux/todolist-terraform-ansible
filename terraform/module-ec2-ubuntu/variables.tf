@@ -1,9 +1,3 @@
-variable "ami" {
-  type        = string
-  description = "the ami image id"
-  default     = "ami-06dd92ecc74fdfb36"
-}
-
 variable "app_region" {
   type    = string
   default = "eu-central-1"

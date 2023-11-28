@@ -1,6 +1,5 @@
 module "target-node-1" {
   source        = "./module-ec2-ubuntu"
-  ami           = var.ami
   instance_type = var.instance_type
   key_name      = var.key_name
   instance_role = "backend"
@@ -15,7 +14,6 @@ module "target-node-1" {
 
 module "target-node-2" {
   source        = "./module-ec2-ubuntu"
-  ami           = var.ami
   instance_type = var.instance_type
   key_name      = var.key_name
   instance_role = "database"
