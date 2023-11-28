@@ -50,6 +50,3 @@
     name: todolist
     enabled: yes
     state: started
-
-# TODO
-# Add gunicorn to requirements.txt, create gunicorn_config.py.
