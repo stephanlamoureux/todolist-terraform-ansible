@@ -1,7 +1,9 @@
+---
 - name: Install Python packages
   apt:
     name: "{{ python_packages }}"
     state: latest
+    update_cache: yes
 
 - name: Clone Git repository
   git:

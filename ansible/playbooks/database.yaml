@@ -1,0 +1,10 @@
+---
+- import_playbook: ubuntu.yaml
+
+- hosts: all
+  become: yes
+  vars:
+    ansible_user: "ubuntu"
+    ansible_ssh_private_key_file: "../stephan.pem"
+  roles:
+    - ../roles/database_setup

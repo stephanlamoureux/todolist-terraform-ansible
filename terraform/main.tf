@@ -5,7 +5,7 @@ module "target-node-1" {
   instance_role = "backend"
 
   tags = {
-    Name        = "Ubuntu - Target Node 1"
+    Name        = "Ubuntu - Backend Target Node"
     Environment = "dev"
     Team        = "mobile-app"
     Type        = "backend"
@@ -19,7 +19,7 @@ module "target-node-2" {
   instance_role = "database"
 
   tags = {
-    Name        = "Ubuntu - Target Node 2"
+    Name        = "Ubuntu - Database Target Node"
     Environment = "dev"
     Team        = "mobile-app"
     Type        = "database"
