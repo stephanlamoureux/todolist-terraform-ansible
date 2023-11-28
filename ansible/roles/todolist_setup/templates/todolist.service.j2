@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn instance to serve todolist
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/todolist
+Environment="PATH=/home/ubuntu/todolist/venv/bin"
+ExecStart=/home/ubuntu/todolist/venv/bin/gunicorn app:app -c /home/ubuntu/todolist/gunicorn_config.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

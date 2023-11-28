@@ -1,0 +1,42 @@
+- name: Install Python packages
+  apt:
+    name: "{{ python_packages }}"
+    state: latest
+
+- name: Clone Git repository
+  git:
+    repo: "https://github.com/chandradeoarya/todolist-flask.git"
+    dest: "/home/ubuntu/todolist"
+    clone: yes
+    update: yes
+    version: 'env'
+
+- name: Create Python virtual environment
+  command:
+    cmd: python3 -m venv /home/ubuntu/todolist/venv
+    creates: /home/ubuntu/todolist/venv
+
+- name: Install requirements
+  pip:
+    requirements: /home/ubuntu/todolist/requirements.txt
+    virtualenv: /home/ubuntu/todolist/venv
+    virtualenv_command: python3 -m venv
+
+# - name: Create systemd service file for the todolist
+#   template:
+#     src: todolist.service.j2
+#     dest: /etc/systemd/system/todolist.service
+#     mode: '0644'
+
+# - name: Reload systemd to read new twoge service
+#   systemd:
+#     daemon_reload: yes
+
+# - name: Enable and start twoge service
+#   systemd:
+#     name: todolist
+#     enabled: yes
+#     state: started
+
+# TODO
+# Add gunicorn to requirements.txt, create gunicorn_config.py, create daemon service for app.

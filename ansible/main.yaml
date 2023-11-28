@@ -1,0 +1,5 @@
+---
+- hosts: ubuntu
+  become: yes
+  roles:
+    - ubuntu_setup
