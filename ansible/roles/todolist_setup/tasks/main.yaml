@@ -22,21 +22,32 @@
     virtualenv: /home/ubuntu/todolist/venv
     virtualenv_command: python3 -m venv
 
-# - name: Create systemd service file for the todolist
-#   template:
-#     src: todolist.service.j2
-#     dest: /etc/systemd/system/todolist.service
-#     mode: '0644'
+- name: Create .env file in todo directory
+  copy:
+    dest: "/home/ubuntu/todolist-flask/.env"
+    content: |
+      MYSQL_DATABASE_HOST={{ mysql_db_host }}
+      MYSQL_DATABASE_USER={{ mysql_db_user }}
+      MYSQL_DATABASE_PASSWORD={{ mysql_db_password }}
+      MYSQL_DATABASE_PORT=3306
 
-# - name: Reload systemd to read new twoge service
-#   systemd:
-#     daemon_reload: yes
+    mode: '0644'
 
-# - name: Enable and start twoge service
-#   systemd:
-#     name: todolist
-#     enabled: yes
-#     state: started
+- name: Create systemd service file for the todolist
+  template:
+    src: todolist.service.j2
+    dest: /etc/systemd/system/todolist.service
+    mode: '0644'
+
+- name: Reload systemd to read new todolist service
+  systemd:
+    daemon_reload: yes
+
+- name: Enable and start todolist service
+  systemd:
+    name: todolist
+    enabled: yes
+    state: started
 
 # TODO
-# Add gunicorn to requirements.txt, create gunicorn_config.py, create daemon service for app.
+# Add gunicorn to requirements.txt, create gunicorn_config.py.

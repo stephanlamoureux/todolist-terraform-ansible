@@ -2,7 +2,7 @@
   become: yes
   hosts: all
   tasks:
-    - name: Installing Mysql and dependencies
+    - name: Install MySQL and dependencies
       package:
         name: '{{ item }}'
         state: present
@@ -13,23 +13,23 @@
         - python3-mysqldb
         - libmysqlclient-dev
       become: yes
-    - name: start and enable mysql service
+    - name: Start and enable MySQL service
       service:
         name: mysql
         state: started
         enabled: yes
-    - name: creating mysql user
+    - name: Create MySQL user
       mysql_user:
-        name: '{{ db_user }}'
-        password: '{{ db_pass }}'
+        name: '{{ mysql_db_user }}'
+        password: '{{ mysql_db_password }}'
         priv: '*.*:ALL'
         host: '%'
         state: present
-    - name: creating db
+    - name: Create DB
       mysql_db:
-        name: '{{ db_name }}'
+        name: 'todo_db'
         state: present
-    - name: Enable remote login to mysql
+    - name: Enable remote login to MySQL
       lineinfile:
         path: /etc/mysql/mysql.conf.d/mysqld.cnf
         regexp: '^bind-address'
