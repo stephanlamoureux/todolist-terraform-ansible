@@ -24,9 +24,20 @@
     virtualenv: /home/ubuntu/todolist/venv
     virtualenv_command: python3 -m venv
 
-- name: Create .env file in todo directory
+- name: Install Gunicorn in the virtual environment
+  pip:
+    name: gunicorn
+    virtualenv: /home/ubuntu/todolist/venv
+
+- name: Copy Gunicorn configuration
+  template:
+    src: gunicorn_config.py.j2
+    dest: /home/ubuntu/todolist/gunicorn_config.py
+    mode: '0644'
+
+- name: Create .env file in todolist directory
   copy:
-    dest: "/home/ubuntu/todolist-flask/.env"
+    dest: "/home/ubuntu/todolist/.env"
     content: |
       MYSQL_DATABASE_HOST={{ mysql_db_host }}
       MYSQL_DATABASE_USER={{ mysql_db_user }}

@@ -74,20 +74,22 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        const API_URL ="http://localhost"; // replace with your API endpoint
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        const API_URL ="${backend_url}"; // Terraform will replace this
 
         function fetchTasks() {
             $.getJSON(API_URL + '/todos', function(data) {
-            var tasks = data.tasks;
-            var output = '<table class="task-table">';
-            output += '<tr><th>Id</th><th>Title</th><th>Description</th><th>Is it done?</th></tr>';
-            for (var i in tasks) {
-                output += `<tr><td>${tasks[i].task_id}</td><td>${tasks[i].title}</td><td>${tasks[i].description}</td><td>${tasks[i].is_done}</td></tr>`;
-            }
-            output += '</table>';
-            $('#taskList').html(output);
-        });
-    }
+                var tasks = data.tasks;
+                var output = '<table class="task-table">';
+                output += '<tr><th>Id</th><th>Title</th><th>Description</th><th>Is it done?</th></tr>';
+                for (var i in tasks) {
+                    output += `<tr><td>$${tasks[i].task_id}</td><td>$${tasks[i].title}</td><td>$${tasks[i].description}</td><td>$${tasks[i].is_done}</td></tr>`;
+                }
+                output += '</table>';
+                $('#taskList').html(output);
+            });
+        }
 
         function addTask() {
             var title = $('#title').val();

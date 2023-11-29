@@ -1,10 +1,14 @@
 ---
-- import_playbook: ubuntu.yaml
-
-- hosts: all
+- name: Configure Backend Server
+  hosts: tag_Type_backend
   become: yes
   vars:
     ansible_user: "ubuntu"
     ansible_ssh_private_key_file: "../stephan.pem"
+    mysql_db_host: "{{ lookup('file', '../../terraform/database_ip.txt') | trim }}"
+
+  vars_files:
+    - ../../secret_vars.yaml
   roles:
+    - ../roles/ubuntu_setup
     - ../roles/backend_setup

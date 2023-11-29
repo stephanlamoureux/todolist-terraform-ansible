@@ -2,6 +2,9 @@
 plugin: aws_ec2
 regions:
   - eu-central-1
+keyed_groups:
+  - key: tags['Type']
+    prefix: tag_Type
 filters:
   tag:Type:
     - backend

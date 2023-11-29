@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "todolist_static_site" {
 resource "aws_s3_object" "index_html" {
   bucket       = aws_s3_bucket.todolist_static_site.bucket
   key          = "index.html"
-  source       = "./assets/index.html"
+  content      = templatefile("${path.module}/templates/index.tpl", { backend_url = module.target-node-1.public_ip })
   content_type = "text/html"
   acl          = "public-read"
 }
