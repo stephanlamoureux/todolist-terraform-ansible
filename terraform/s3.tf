@@ -57,6 +57,14 @@ resource "aws_s3_bucket_website_configuration" "my_static_site_config" {
 
 // This bucket policy allows public read access to the website's files.
 resource "aws_s3_bucket_policy" "my_static_site_policy" {
+  depends_on = [
+    aws_s3_bucket.todolist_static_site,
+    aws_s3_bucket_ownership_controls.todolist_static_site_controls,
+    aws_s3_bucket_public_access_block.todolist_static_site_access_block,
+    aws_s3_bucket_acl.todolist_static_site_acl,
+    aws_s3_bucket_website_configuration.my_static_site_config
+  ]
+
   bucket = aws_s3_bucket.todolist_static_site.bucket
 
   policy = jsonencode({
@@ -71,4 +79,5 @@ resource "aws_s3_bucket_policy" "my_static_site_policy" {
     ],
   })
 }
+
 
