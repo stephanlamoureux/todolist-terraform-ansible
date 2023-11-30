@@ -1,15 +1,9 @@
 ---
 - name: Install MySQL and dependencies
-  package:
-    name: '{{ item }}'
-    state: present
+  apt:
+    name: "{{ mysql_packages }}"
+    state: latest
     update_cache: yes
-  loop:
-    - mysql-server
-    - mysql-client
-    - python3-mysqldb
-    - libmysqlclient-dev
-  become: yes
 
 - name: Start and enable MySQL service
   service:

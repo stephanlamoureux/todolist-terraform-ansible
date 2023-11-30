@@ -10,4 +10,4 @@
 - name: Install Ubuntu packages
   apt:
     name: "{{ ubuntu_packages }}"
-    state: latest
+    state: present

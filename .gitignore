@@ -7,4 +7,4 @@ secret_vars.yaml
 /terraform/database_ip.txt
 /terraform/terraform.tfstate
 /terraform/.terraform.lock.hcl
-terraform/terraform.tfstate.backup
+/terraform/terraform.tfstate.backup
