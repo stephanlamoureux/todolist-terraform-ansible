@@ -3,6 +3,8 @@
 stephan.pem
 secret_vars.yaml
 /terraform/.terraform/
+/terraform/backend_ip.txt
+/terraform/database_ip.txt
 /terraform/terraform.tfstate
 /terraform/.terraform.lock.hcl
 terraform/terraform.tfstate.backup
