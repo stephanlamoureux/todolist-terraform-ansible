@@ -1,0 +1,25 @@
+---
+- name: Configure Database Server
+  hosts: tag_Type_database
+  become: yes
+  vars:
+    ansible_user: "ubuntu"
+    ansible_ssh_private_key_file: "../stephan.pem"
+  vars_files:
+    - ../../secret_vars.yaml
+  roles:
+    - ../roles/ubuntu_setup
+    - ../roles/database_setup
+
+- name: Configure Backend Server
+  hosts: tag_Type_backend
+  become: yes
+  vars:
+    ansible_user: "ubuntu"
+    ansible_ssh_private_key_file: "../stephan.pem"
+    mysql_db_host: "{{ lookup('file', '../../terraform/database_ip.txt') | trim }}"
+  vars_files:
+    - ../../secret_vars.yaml
+  roles:
+    - ../roles/ubuntu_setup
+    - ../roles/backend_setup

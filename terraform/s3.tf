@@ -3,7 +3,7 @@ resource "aws_s3_bucket" "todolist_static_site" {
   bucket = "stephan-todolist-flask"
 
   tags = {
-    instance_role = "frontend"
+    Type = "frontend"
   }
 }
 
@@ -60,14 +60,15 @@ resource "aws_s3_bucket_policy" "my_static_site_policy" {
   bucket = aws_s3_bucket.todolist_static_site.bucket
 
   policy = jsonencode({
+    Version = "2012-10-17",
     Statement = [
       {
-        Action    = ["s3:GetObject"],
         Effect    = "Allow",
-        Resource  = ["${aws_s3_bucket.todolist_static_site.arn}/*"],
-        Principal = "*"
-      }
-    ]
+        Principal = "*",
+        Action    = "s3:GetObject",
+        Resource  = "${aws_s3_bucket.todolist_static_site.arn}/*",
+      },
+    ],
   })
 }
 

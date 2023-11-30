@@ -76,7 +76,7 @@
     <script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        const API_URL ="${backend_url}"; // Terraform will replace this
+        const API_URL ="http://${backend_url}"; // Terraform will replace this
 
         function fetchTasks() {
             $.getJSON(API_URL + '/todos', function(data) {

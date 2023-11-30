@@ -18,14 +18,6 @@ resource "aws_security_group" "backend_security_group" {
     description = "http"
   }
 
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "https"
-  }
-
   # Fully public outbound rules.
   egress {
     from_port   = 0

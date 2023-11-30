@@ -7,7 +7,7 @@ After=syslog.target network-online.target
 Type=simple
 WorkingDirectory=/home/ubuntu/todolist
 Environment="PATH=/home/ubuntu/todolist/venv/bin"
-ExecStart=/home/ubuntu/todolist/venv/bin/gunicorn app:app -c /home/ubuntu/todolist/gunicorn_config.py
+ExecStart=/home/ubuntu/todolist/venv/bin/gunicorn todo:app -c /home/ubuntu/todolist/gunicorn_config.py
 Restart=always
 RestartSec=10
 

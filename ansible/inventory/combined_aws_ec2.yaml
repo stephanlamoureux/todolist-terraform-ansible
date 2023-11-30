@@ -1,0 +1,16 @@
+---
+plugin: aws_ec2
+regions:
+  - eu-central-1
+
+keyed_groups:
+  # Create groups based on the value of the 'Type' tag
+  - key: tags['Type']
+    prefix: tag_Type
+
+# Filter instances to include those tagged as either 'backend' or 'database'
+filters:
+  tag:Type:
+    - database
+    - backend
+
