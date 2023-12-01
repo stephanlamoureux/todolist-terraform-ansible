@@ -2,6 +2,7 @@
 .vscode/
 stephan.pem
 secret_vars.yaml
+.$todolist.drawio.bkp
 /terraform/.terraform/
 /terraform/backend_ip.txt
 /terraform/database_ip.txt
