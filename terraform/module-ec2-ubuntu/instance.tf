@@ -25,3 +25,7 @@ data "aws_ami" "latest_ubuntu" {
 
   owners = ["099720109477"] # Canonical's owner ID
 }
+
+output "instance_id" {
+  value = aws_instance.ubuntu_node.id
+}
