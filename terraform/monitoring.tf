@@ -35,7 +35,7 @@ resource "aws_cloudwatch_metric_alarm" "high_network_in" {
   evaluation_periods  = "1"
   metric_name         = "NetworkIn"
   namespace           = "AWS/EC2"
-  period              = "300" // 5 minutes
+  period              = "60" // 1 minute
   statistic           = "Average"
   threshold           = "10000000" // 10MB threshold (in bytes)
   alarm_description   = "This alarm monitors EC2 incoming network traffic"
